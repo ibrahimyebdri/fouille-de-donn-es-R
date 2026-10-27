@@ -1,0 +1,54 @@
+ARBRE DE REGRESSION - ACCESSIBILITE ECONOMIQUE DU LOGEMENT
+Jeu de donnees : accessibilit-economica-26-paesi-1975-2025.csv
+Variable cible : affordability_proxy
+Variables explicatives : country et year
+
+Representation textuelle :
+n= 1326 
+
+node), split, n, deviance, yval
+      * denotes terminal node
+
+ 1) root 1326 4910149.00 102.95540  
+   2) country=Australia,Belgium,Canada,Colombia,Croatia,Denmark,Finland,France,Germany,Ireland,Israel,Italy,Japan,Luxembourg,Netherlands,New Zealand,Norway,Portugal,S. Africa,Slovenia,Spain,Sweden,Switzerland,UK,US 1275 2049463.00  96.75540  
+     4) country=Australia,Belgium,Canada,Denmark,France,Ireland,Israel,Luxembourg,Netherlands,New Zealand,Norway,Portugal,S. Africa,Slovenia,Sweden,Switzerland,UK,US 918  407033.30  83.19986  
+       8) year< 2003.5 522  212109.40  73.97437  
+        16) country=Australia,Belgium,Canada,Ireland,Luxembourg,Netherlands,New Zealand,UK 232   36912.13  58.43983 *
+        17) country=Denmark,France,Israel,Norway,Portugal,S. Africa,Slovenia,Sweden,Switzerland,US 290   74421.26  86.40200 *
+       9) year>=2003.5 396   91933.44  95.36073  
+        18) country=Australia,Canada,Israel,Luxembourg,Netherlands,New Zealand,Portugal,Switzerland,US 198   37444.01  86.73616 *
+        19) country=Belgium,Denmark,France,Ireland,Norway,S. Africa,Slovenia,Sweden,UK 198   25033.68 103.98530 *
+     5) country=Colombia,Croatia,Finland,Germany,Italy,Japan,Spain 357 1039983.00 131.61250  
+      10) year>=1995.5 210  102274.10 115.66150  
+        20) country=Colombia,Germany,Spain 90   23828.24 107.09200 *
+        21) country=Croatia,Finland,Italy,Japan 120   66879.66 122.08860 *
+      11) year< 1995.5 147  807946.70 154.39970  
+        22) country=Finland,Germany,Italy,Spain 84   73093.05 128.66790 *
+        23) country=Colombia,Croatia,Japan 63  605076.30 188.70890 *
+   3) country=S. Korea 51 1586386.00 257.95630  
+     6) year>=1991.5 34   49857.57 141.23290 *
+     7) year< 1991.5 17  146845.90 491.40290 *
+
+Table des parametres de complexite :
+
+Regression tree:
+rpart(formula = affordability_proxy ~ country + year, data = donnees, 
+    method = "anova", control = rpart.control(cp = 0, minsplit = 40, 
+        maxdepth = 4))
+
+Variables actually used in tree construction:
+[1] country year   
+
+Root node error: 4910149/1326 = 3703
+
+n= 1326 
+
+         CP nsplit rel error  xerror     xstd
+1 0.2712731      0   1.00000 1.00061 0.168939
+2 0.1226942      2   0.45745 0.71087 0.126678
+3 0.0264289      3   0.33476 0.36941 0.078172
+4 0.0209750      5   0.28190 0.34244 0.077759
+5 0.0205240      6   0.26093 0.31363 0.073265
+6 0.0059990      7   0.24040 0.28714 0.068392
+7 0.0023556      8   0.23440 0.27187 0.067482
+8 0.0000000      9   0.23205 0.27054 0.067412
